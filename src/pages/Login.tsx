@@ -59,10 +59,14 @@ const Login = () => {
       <div className="w-full max-w-md space-y-6">
         <div className="flex justify-center">
           <div className="bg-school-primary rounded-md p-3">
-            <School className="h-8 w-8 text-white" />
+            <img 
+              src="/lovable-uploads/444dafee-a6d5-4249-8b3e-c2c4d6358380.png" 
+              alt="Prayas IITK Logo" 
+              className="h-8 w-8 text-white"
+            />
           </div>
         </div>
-        <h1 className="text-center text-3xl font-bold text-school-primary">SchoolHub</h1>
+        <h1 className="text-center text-3xl font-bold text-school-primary">Prayas IITK</h1>
         <p className="text-center text-gray-600">School Management System</p>
 
         <Card>

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -49,7 +48,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   
   const navItems = [
-    // Admin only pages
     {
       to: "/student-management",
       label: "Student Management",
@@ -68,7 +66,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       icon: <Users size={18} />,
       roles: ["admin"]
     },
-    // Admin and volunteer pages
     {
       to: "/attendance",
       label: "Attendance",
@@ -81,7 +78,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       icon: <BarChart size={18} />,
       roles: ["admin", "volunteer"]
     },
-    // Pages for all users
     {
       to: "/library",
       label: "Library",
@@ -106,7 +102,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       icon: <Star size={18} />,
       roles: ["admin", "volunteer", "student"]
     },
-    // Student only pages
     {
       to: "/volunteer-feedback",
       label: "Volunteer Feedback",
@@ -115,14 +110,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     }
   ];
   
-  // Filter navigation items based on user role
   const filteredNavItems = navItems.filter(item => 
     user?.role && item.roles.includes(user.role)
   );
   
   return (
     <div className="flex min-h-screen bg-school-background">
-      {/* Mobile sidebar toggle */}
       <div className="lg:hidden fixed top-4 left-4 z-30">
         <Button 
           variant="outline" 
@@ -133,7 +126,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </Button>
       </div>
       
-      {/* Sidebar - Desktop and mobile versions */}
       <div 
         className={cn(
           "fixed inset-y-0 left-0 z-20 w-64 bg-white shadow-md transition-transform duration-300 ease-in-out",
@@ -142,18 +134,20 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         )}
       >
         <div className="flex flex-col h-full">
-          {/* School logo and name */}
           <div className="flex items-center gap-2 p-4 border-b">
             <div className="bg-school-primary rounded-md p-2">
-              <Users className="h-6 w-6 text-white" />
+              <img 
+                src="/lovable-uploads/444dafee-a6d5-4249-8b3e-c2c4d6358380.png" 
+                alt="Prayas IITK Logo" 
+                className="h-6 w-6 text-white"
+              />
             </div>
             <div>
-              <h1 className="font-bold text-xl">SchoolHub</h1>
+              <h1 className="font-bold text-xl">Prayas IITK</h1>
               <p className="text-xs text-muted-foreground">Management System</p>
             </div>
           </div>
           
-          {/* User info */}
           <div className="p-4 border-b">
             <div className="flex items-center gap-3">
               <Avatar>
@@ -167,7 +161,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           
-          {/* Navigation items */}
           <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
             {filteredNavItems.map((item) => (
               <SidebarItem 
@@ -180,7 +173,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             ))}
           </nav>
           
-          {/* Logout button */}
           <div className="p-4 border-t">
             <Button 
               variant="ghost" 
@@ -194,7 +186,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       
-      {/* Main content */}
       <div className={cn(
         "flex-1 p-6 lg:ml-64",
         "transition-all duration-300 ease-in-out"
@@ -204,7 +195,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       
-      {/* Overlay for mobile when sidebar is open */}
       {sidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-10 lg:hidden"

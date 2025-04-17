@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
@@ -12,8 +11,12 @@ const Index = () => {
     return (
       <div className="flex min-h-screen items-center justify-center bg-school-background">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <img 
+            src="/lovable-uploads/444dafee-a6d5-4249-8b3e-c2c4d6358380.png" 
+            alt="Prayas IITK Logo" 
+            className="animate-spin h-12 w-12 mx-auto mb-4"
+          />
+          <p className="text-gray-600">Loading Prayas IITK...</p>
         </div>
       </div>
     );
