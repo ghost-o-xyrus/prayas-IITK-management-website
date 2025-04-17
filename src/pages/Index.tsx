@@ -24,8 +24,10 @@ const Index = () => {
     // Redirect to different pages based on user role
     if (user.role === 'student') {
       return <Navigate to="/performance" replace />;
-    } else {
+    } else if (user.role === 'volunteer') {
       return <Navigate to="/attendance" replace />;
+    } else if (user.role === 'admin') {
+      return <Navigate to="/user-directory" replace />;
     }
   }
 

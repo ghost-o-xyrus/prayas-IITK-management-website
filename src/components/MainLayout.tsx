@@ -10,7 +10,12 @@ import {
   BarChart, 
   LogOut, 
   Menu,
-  X
+  X,
+  UserPlus,
+  MessageSquare,
+  Star,
+  Info,
+  UserCog
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -44,12 +49,39 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   
   const navItems = [
+    // Admin only pages
+    {
+      to: "/student-management",
+      label: "Student Management",
+      icon: <UserPlus size={18} />,
+      roles: ["admin"]
+    },
+    {
+      to: "/volunteer-management",
+      label: "Volunteer Management",
+      icon: <UserCog size={18} />,
+      roles: ["admin"]
+    },
+    {
+      to: "/user-directory",
+      label: "User Directory",
+      icon: <Users size={18} />,
+      roles: ["admin"]
+    },
+    // Admin and volunteer pages
     {
       to: "/attendance",
       label: "Attendance",
       icon: <Calendar size={18} />,
       roles: ["admin", "volunteer"]
     },
+    {
+      to: "/test-scores",
+      label: "Test Scores",
+      icon: <BarChart size={18} />,
+      roles: ["admin", "volunteer"]
+    },
+    // Pages for all users
     {
       to: "/library",
       label: "Library",
@@ -63,16 +95,23 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       roles: ["admin", "volunteer", "student"]
     },
     {
-      to: "/documents",
-      label: "Documents",
-      icon: <FileText size={18} />,
+      to: "/information",
+      label: "Information",
+      icon: <Info size={18} />,
       roles: ["admin", "volunteer", "student"]
     },
     {
-      to: "/test-scores",
-      label: "Test Scores",
-      icon: <BarChart size={18} />,
-      roles: ["admin", "volunteer"]
+      to: "/reviews",
+      label: "Reviews",
+      icon: <Star size={18} />,
+      roles: ["admin", "volunteer", "student"]
+    },
+    // Student only pages
+    {
+      to: "/volunteer-feedback",
+      label: "Volunteer Feedback",
+      icon: <MessageSquare size={18} />,
+      roles: ["student"]
     }
   ];
   
@@ -119,7 +158,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             <div className="flex items-center gap-3">
               <Avatar>
                 <AvatarImage src={`https://api.dicebear.com/7.x/initials/svg?seed=${user?.name}`} />
-                <AvatarFallback>{user?.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+                <AvatarFallback>{user?.name?.substring(0, 2).toUpperCase()}</AvatarFallback>
               </Avatar>
               <div>
                 <p className="font-medium">{user?.name}</p>
@@ -129,7 +168,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
           
           {/* Navigation items */}
-          <nav className="flex-1 p-4 space-y-2">
+          <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
             {filteredNavItems.map((item) => (
               <SidebarItem 
                 key={item.to} 

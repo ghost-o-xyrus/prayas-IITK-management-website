@@ -12,9 +12,14 @@ import Unauthorized from "./pages/Unauthorized";
 import Attendance from "./pages/Attendance";
 import Library from "./pages/Library";
 import Performance from "./pages/Performance";
-import Documents from "./pages/Documents";
+import Information from "./pages/Information";
 import TestScores from "./pages/TestScores";
 import NotFound from "./pages/NotFound";
+import StudentManagement from "./pages/StudentManagement";
+import VolunteerManagement from "./pages/VolunteerManagement";
+import VolunteerFeedback from "./pages/VolunteerFeedback";
+import Reviews from "./pages/Reviews";
+import UserDirectory from "./pages/UserDirectory";
 
 const queryClient = new QueryClient();
 
@@ -54,10 +59,10 @@ const App = () => (
               }
             />
             <Route
-              path="/documents"
+              path="/information"
               element={
                 <ProtectedRoute allowedRoles={["admin", "volunteer", "student"]}>
-                  <Documents />
+                  <Information />
                 </ProtectedRoute>
               }
             />
@@ -66,6 +71,46 @@ const App = () => (
               element={
                 <ProtectedRoute allowedRoles={["admin", "volunteer"]}>
                   <TestScores />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/student-management"
+              element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <StudentManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/volunteer-management"
+              element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <VolunteerManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/volunteer-feedback"
+              element={
+                <ProtectedRoute allowedRoles={["student"]}>
+                  <VolunteerFeedback />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/reviews"
+              element={
+                <ProtectedRoute allowedRoles={["admin", "volunteer", "student"]}>
+                  <Reviews />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/user-directory"
+              element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <UserDirectory />
                 </ProtectedRoute>
               }
             />

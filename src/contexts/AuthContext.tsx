@@ -9,6 +9,12 @@ export interface User {
   name: string;
   email: string;
   role: UserRole;
+  phone?: string;
+  address?: string;
+  grade?: string;
+  joinDate?: string;
+  subjects?: string[];
+  classId?: string;
 }
 
 interface AuthContextType {
@@ -16,6 +22,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   isLoading: boolean;
+  allUsers: User[];
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -27,18 +34,81 @@ const mockUsers: User[] = [
     name: 'Admin User',
     email: 'admin@school.com',
     role: 'admin',
+    phone: '555-123-4567',
+    address: '123 Admin St, School City',
+    joinDate: '2020-01-01',
   },
   {
     id: '2',
     name: 'Student User',
     email: 'student@school.com',
     role: 'student',
+    phone: '555-234-5678',
+    address: '456 Student Ave, School City',
+    grade: '10th',
+    joinDate: '2023-08-15',
+    classId: 'C101',
   },
   {
     id: '3',
     name: 'Volunteer User',
     email: 'volunteer@school.com',
     role: 'volunteer',
+    phone: '555-345-6789',
+    address: '789 Volunteer Blvd, School City',
+    subjects: ['Math', 'Science'],
+    joinDate: '2022-03-10',
+  },
+  {
+    id: '4',
+    name: 'James Smith',
+    email: 'james@school.com',
+    role: 'student',
+    phone: '555-987-6543',
+    address: '101 Main St, School City',
+    grade: '9th',
+    joinDate: '2023-08-15',
+    classId: 'C102',
+  },
+  {
+    id: '5',
+    name: 'Sarah Johnson',
+    email: 'sarah@school.com',
+    role: 'volunteer',
+    phone: '555-876-5432',
+    address: '202 Oak Ave, School City',
+    subjects: ['English', 'History'],
+    joinDate: '2021-09-05',
+  },
+  {
+    id: '6',
+    name: 'Robert Williams',
+    email: 'robert@school.com',
+    role: 'admin',
+    phone: '555-765-4321',
+    address: '303 Pine Rd, School City',
+    joinDate: '2019-06-12',
+  },
+  {
+    id: '7',
+    name: 'Emily Davis',
+    email: 'emily@school.com',
+    role: 'student',
+    phone: '555-654-3210',
+    address: '404 Maple Dr, School City',
+    grade: '11th',
+    joinDate: '2022-08-15',
+    classId: 'C103',
+  },
+  {
+    id: '8',
+    name: 'Michael Brown',
+    email: 'michael@school.com',
+    role: 'volunteer',
+    phone: '555-543-2109',
+    address: '505 Cedar Ln, School City',
+    subjects: ['Math', 'Computer Science'],
+    joinDate: '2022-01-15',
   },
 ];
 
@@ -95,7 +165,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading }}>
+    <AuthContext.Provider value={{ user, login, logout, isLoading, allUsers: mockUsers }}>
       {children}
     </AuthContext.Provider>
   );
