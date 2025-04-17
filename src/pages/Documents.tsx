@@ -17,7 +17,7 @@ import {
   Plus, 
   File, 
   FileImage, 
-  FilePdf, 
+  File as FilePdf, 
   FileSpreadsheet,
   Trash2, 
   Upload,
