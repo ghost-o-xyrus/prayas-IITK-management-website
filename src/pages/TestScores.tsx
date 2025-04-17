@@ -1,9 +1,7 @@
-
 import { useState } from 'react';
 import MainLayout from '@/components/MainLayout';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Table,
   TableBody,
@@ -12,26 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import {
-  LineChart,
-  BarChart,
-  Line,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
 import {
   BarChart as BarChartIcon,
   FileSpreadsheet,
@@ -43,7 +21,9 @@ import {
   Users,
   ArrowUpRight
 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -349,7 +329,7 @@ const TestScores = () => {
                 <SelectValue placeholder="Select Student" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Students</SelectItem>
+                <SelectItem value="all_students">All Students</SelectItem>
                 {mockStudents.map(student => (
                   <SelectItem key={student.id} value={student.id}>{student.name}</SelectItem>
                 ))}

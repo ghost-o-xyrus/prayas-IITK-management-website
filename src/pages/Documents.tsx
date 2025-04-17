@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import MainLayout from '@/components/MainLayout';
 import { Button } from '@/components/ui/button';
@@ -31,6 +30,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { format } from 'date-fns';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { toast } from 'sonner';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 // Mock document data
 const mockDocuments = [
@@ -154,15 +154,19 @@ const Documents = () => {
         {/* Filter and search bar */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="w-full sm:w-64">
-            <select 
-              className="w-full p-2 border rounded-md"
+            <Select 
               value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
+              onValueChange={setSelectedCategory}
             >
-              {categories.map(category => (
-                <option key={category} value={category}>{category}</option>
-              ))}
-            </select>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select Category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map(category => (
+                  <SelectItem key={category} value={category}>{category}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="flex-1 relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
